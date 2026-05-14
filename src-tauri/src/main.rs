@@ -194,12 +194,9 @@ async fn handle_connection(
             }
             // 发送消息给客户端
             Some(msg) = rx.recv() => {
-                use tokio::io::AsyncWriteExt;
-                let mut writer = write;
-                if writer.write_all(msg.as_bytes()).await.is_err() {
-                    break;
-                }
-                if writer.flush().await.is_err() {
+                use futures_util::SinkExt;
+                let writer = write;
+                if writer.send(tokio_tungstenite::tungstenite::Message::Text(msg)).await.is_err() {
                     break;
                 }
             }
