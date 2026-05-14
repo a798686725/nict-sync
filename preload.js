@@ -1,12 +1,8 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  startServer: (port) => ipcRenderer.send('start-server', port),
-  stopServer: () => ipcRenderer.send('stop-server'),
-  getServerStatus: () => ipcRenderer.sendSync('get-server-status'),
+  startWsServer: (port) => ipcRenderer.invoke('start-ws-server', port),
+  stopWsServer: () => ipcRenderer.invoke('stop-ws-server'),
+  getWsStatus: () => ipcRenderer.invoke('get-ws-status'),
   getLocalIP: () => ipcRenderer.invoke('get-local-ip'),
-  broadcastData: (data) => ipcRenderer.send('broadcast-data', data),
-  onClientCount: (callback) => {
-    ipcRenderer.on('client-count', (event, count) => callback(count));
-  }
 });
