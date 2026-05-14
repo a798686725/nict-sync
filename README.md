@@ -1,4 +1,4 @@
-# NICT 吊数计算器 - 同步版
+# NICT 吊数计算器 - 局域网同步版
 
 基于 V1.6 的港口吊数计算器，增加局域网实时同步功能。
 
@@ -10,62 +10,63 @@
 - 💾 **自动保存**：数据保存在浏览器 sessionStorage
 - 📥 **Excel导出**：支持单页和统计报表导出
 
-## 同步模式
+## 快速使用
 
-### 服务器模式（电脑A）
-1. 点击「🚀 启动服务器」
+下载 `NICT吊数计算器_同步版.exe` 后，直接双击运行即可。
+
+## 局域网同步使用
+
+### 服务器模式（电脑A - 主机）
+
+1. 点击 **🚀 启动服务器**
 2. 记下显示的局域网IP和端口（如 `192.168.1.100:8765`）
-3. 其他电脑连接到此地址
+3. 确保防火墙允许 8765 端口
 
 ### 客户端模式（电脑B、电脑C）
-1. 点击「🔗 连接」
+
+1. 点击 **🔗 连接**
 2. 输入服务器地址（如 `192.168.1.100:8765`）
 3. 连接成功后自动同步数据
+
+### 同步效果
+
+- 任何一台电脑修改数据，其他电脑实时同步
+- 支持多人同时编辑
+- 在线人数显示在状态栏
 
 ## 本地开发
 
 ```bash
+# 安装依赖
 npm install
-npm run dev
-```
 
-## GitHub Actions 云编译
+# 运行（开发模式）
+npm start
 
-上传代码到 GitHub 后，Actions 会自动编译：
-
-1. Windows: `.exe` 安装包
-2. macOS: `.dmg` 安装包  
-3. Linux: `.AppImage`
-
-下载位置：Actions 页面的 Artifacts
-
-## 编译为桌面应用（本地）
-
-需要安装 Rust 和 Node.js：
-
-```bash
-npm install
-npm run tauri build
+# 打包为 exe
+npm run build
 ```
 
 ## 目录结构
 
 ```
 nict-sync/
-├── index.html          # 主应用（HTML）
-├── package.json        # 前端依赖
-├── vite.config.js      # Vite 配置
-├── src-tauri/          # Tauri 后端
-│   ├── Cargo.toml
-│   ├── build.rs
-│   ├── src/main.rs     # WebSocket 服务器
-│   └── tauri.conf.json
-├── .github/workflows/  # CI/CD
+├── main.js          # Electron 主进程（WebSocket 服务器）
+├── preload.js       # Electron 预加载脚本
+├── index.html       # 主应用界面
+├── package.json     # 项目配置
 └── README.md
 ```
 
+## 技术架构
+
+- **桌面框架**：Electron 28
+- **同步协议**：WebSocket（内置 ws 库）
+- **打包工具**：electron-builder
+- **输出格式**：便携式 exe（绿色版，无需安装）
+
 ## 注意事项
 
-- ⚠️ 图标文件（icons/）需要自行添加
 - 🔒 同步功能适用于内网环境
-- 💻 推荐在能上网的电脑上触发 GitHub Actions 编译
+- ⚠️ 确保所有电脑在同一局域网内
+- 🔥 主机需要开放 8765 端口

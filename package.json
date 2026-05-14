@@ -1,20 +1,39 @@
 {
-  "name": "nict-sync",
-  "version": "1.0.0",
+  "name": "nict-calculator",
+  "version": "1.6",
   "description": "NICT 吊数计算器 - 局域网同步版",
+  "main": "main.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "tauri": "tauri",
-    "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "build-dir": "electron-builder --win --dir"
+  },
+  "build": {
+    "appId": "com.nict.calculator",
+    "productName": "NICT吊数计算器",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "NICT吊数计算器_同步版.exe"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html"
+    ],
+    "extraResources": []
   },
   "dependencies": {
-    "vue": "^3.4.0"
+    "ws": "^8.16.0"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.6.0",
-    "vite": "^5.0.0"
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
   }
 }
