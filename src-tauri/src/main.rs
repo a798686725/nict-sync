@@ -186,7 +186,7 @@ async fn handle_connection(
                         let data = format!(r#"{{"type":"data","from":"{}","data":{}}}"#, addr, text);
                         let _ = broadcast_tx.send(data);
                     }
-                    Some(Ok(Message::Close())) | None => {
+                    Some(Ok(Message::Close(..))) | None => {
                         break;
                     }
                     _ => {}
