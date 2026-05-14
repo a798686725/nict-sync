@@ -12,6 +12,7 @@ use tokio::net::{TcpListener, TcpStream};
 use tokio::sync::broadcast;
 use tokio_tungstenite::{accept_async, tungstenite::Message};
 use futures_util::stream::StreamExt;
+use futures_util::SinkExt;
 
 // 全局状态
 struct AppState {
