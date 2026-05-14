@@ -10,23 +10,6 @@
 html, body { min-height: 100vh; }
 body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #e8eef5; color: #333; }
 
-/* 连接状态栏 */
-.sync-status-bar {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 6px 16px; background: linear-gradient(135deg, #1b3a1f, #2e7d32);
-  font-size: 0.8em; color: #fff; font-weight: 600;
-}
-.sync-status-bar .status-left { display: flex; align-items: center; gap: 8px; }
-.sync-status-bar .status-right { display: flex; align-items: center; gap: 12px; }
-.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ef5350; }
-.status-dot.connected { background: #4caf50; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
-.sync-btn { padding: 4px 12px; border: 1px solid rgba(255,255,255,0.4); border-radius: 12px; background: rgba(255,255,255,0.15); color: #fff; cursor: pointer; font-size: 0.8em; transition: all 0.2s; }
-.sync-btn:hover { background: rgba(255,255,255,0.25); }
-.sync-btn.active { background: #4caf50; border-color: #4caf50; }
-.online-count { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 10px; }
-
-/* 主标题 */
 .header { background: linear-gradient(135deg, #1565c0 0%, #1976d2 50%, #2196f3 100%); padding: 14px 20px; box-shadow: 0 2px 10px rgba(21, 101, 192, 0.3); }
 .header h1 { font-size: 1.4em; color: #fff; font-weight: 600; text-align: center; letter-spacing: 2px; }
 
@@ -52,7 +35,7 @@ body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #e8eef5; c
 .calc-view { display: block; }
 .calc-view.hidden { display: none; }
 
-/* 统计视图 */
+/* ===== 统计视图 ===== */
 .stats-view { display: none; width: 100%; }
 .stats-view.visible { display: block; }
 .stats-title { text-align: center; font-size: 1.3em; color: #1565c0; font-weight: 700; margin: 16px 0 6px; letter-spacing: 3px; }
@@ -62,17 +45,23 @@ body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #e8eef5; c
 .btn-export-stats { padding: 8px 24px; border: 2px solid #2e7d32; border-radius: 20px; background: #fff; color: #2e7d32; font-size: 0.9em; font-weight: 700; cursor: pointer; transition: all 0.2s; margin: 12px auto 16px; display: block; box-shadow: 0 2px 8px rgba(46,125,50,0.15); }
 .btn-export-stats:hover { background: #2e7d32; color: #fff; box-shadow: 0 4px 16px rgba(46,125,50,0.3); }
 
-.stats-table-wrapper { border: 2px solid #c8e6c9; border-radius: 14px; overflow: auto; box-shadow: 0 4px 24px rgba(46,125,50,0.12); margin: 0 auto; max-width: 99%; }
+.stats-table-wrapper { border: 2px solid #c8e6c9; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(46,125,50,0.12); margin: 0 auto; max-width: 99%; }
 .stats-table { width: 100%; border-collapse: collapse; white-space: nowrap; }
 .stats-table th { background: linear-gradient(135deg, #2e7d32, #388e3c); padding: 12px 10px; text-align: center; font-size: 0.78em; color: #fff; font-weight: 700; letter-spacing: 0.5px; position: sticky; top: 0; z-index: 2; border-bottom: 2px solid #1b5e20; }
 .stats-table td { border: 1px solid #e8eef5; background: #fff; vertical-align: middle; }
+
+/* 合并大框样式 */
 .cell-group { background: linear-gradient(135deg, #e3f2fd, #f5f9ff); }
 .cell-group .cell-val { font-size: 1.05em; font-weight: 800; color: #1565c0; display: block; text-align: center; }
 .cell-group .cell-sub { font-size: 0.72em; color: #888; display: block; text-align: center; margin-top: 2px; font-weight: 400; }
+
 .cell-remark { background: linear-gradient(135deg, #fff5f5, #fff); text-align: left; padding: 8px 12px; vertical-align: middle; }
 .cell-remark .remark-text { font-size: 0.85em; color: #c62828; font-weight: 700; word-break: break-all; }
+
 .cell-group-alt { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); }
 .cell-group-alt .cell-val { color: #2e7d32; }
+
+/* 桥行 */
 .bridge-row td { background: #fff; }
 .bridge-row:nth-child(4n+2) td { background: #fafcff; }
 .bridge-row:nth-child(4n+3) td { background: #f5f9ff; }
@@ -84,7 +73,7 @@ body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #e8eef5; c
 .bridge-eff { color: #2e7d32; font-weight: 700; font-size: 0.98em; display: block; text-align: center; }
 .bridge-eff.max { color: #e53935; font-size: 1.1em; }
 
-/* 卡片 */
+/* ===== 卡片 ===== */
 .card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 12px rgba(21, 101, 192, 0.1); border: 1px solid #d0dff0; }
 .card-title { font-size: 0.95em; color: #1565c0; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e3f2fd; font-weight: 600; display: flex; align-items: center; gap: 6px; }
 .card-title::before { content: ''; width: 4px; height: 16px; background: linear-gradient(180deg, #2196f3, #1565c0); border-radius: 2px; }
@@ -132,6 +121,7 @@ tr.dragging { opacity: 0.5; background: #e3f2fd !important; }
 tr.drag-over td { background: #bbdefb !important; border-color: #1565c0; }
 tr.fill-highlight td { background: #e3f2fd !important; border-color: #1565c0; }
 tr.fill-highlight { background: #e3f2fd; }
+
 .calc-page:only-child { margin: 0 auto; }
 .pages-inner:has(.calc-page:nth-child(2)) .calc-page:first-child { margin-right: auto; }
 .pages-inner:has(.calc-page:nth-child(2)) .calc-page:last-child { margin-left: auto; }
@@ -188,6 +178,8 @@ html.dark-mode { background-color: #0f172a !important; }
 .dark-mode .btn-add-page:hover { background: #7b1fa2; }
 .dark-mode .btn-remove-page:hover { background: #c62828; border-color: #c62828; }
 .dark-mode .btn-remove-page:disabled { background: #37474f; border-color: #37474f; cursor: not-allowed; }
+
+/* 深色统计 */
 .dark-mode .stats-table-wrapper { border-color: #2e7d32; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
 .dark-mode .stats-table th { background: linear-gradient(135deg, #1b3a1f 0%, #2e7d32 100%); border-bottom-color: #1b5e20; }
 .dark-mode .stats-table td { background: #16213e; border-color: #274c5e; }
@@ -214,7 +206,6 @@ html.dark-mode { background-color: #0f172a !important; }
 .dark-mode .stats-summary-item { background: #16213e; border-color: #274c5e; color: #90caf9; }
 .dark-mode .btn-export-stats { border-color: #2e7d32; color: #81c784; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 .dark-mode .btn-export-stats:hover { background: #2e7d32; color: #fff; }
-.dark-mode .sync-status-bar { background: linear-gradient(135deg, #0d1b2a, #1b263b); border-bottom: 1px solid #274c5e; }
 
 .theme-toggle { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 6px 14px; color: #fff; font-size: 0.85em; cursor: pointer; transition: all 0.3s; margin-left: 10px; }
 .theme-toggle:hover { background: rgba(255,255,255,0.25); }
@@ -223,24 +214,11 @@ html.dark-mode { background-color: #0f172a !important; }
 </head>
 <body>
 
-<!-- 同步状态栏 -->
-<div class="sync-status-bar" id="syncStatusBar">
-  <div class="status-left">
-    <span class="status-dot" id="statusDot"></span>
-    <span id="statusText">单机模式</span>
-  </div>
-  <div class="status-right">
-    <span class="online-count" id="onlineCount" style="display:none">在线：1</span>
-    <button class="sync-btn" id="btnStartServer" onclick="startServer()">🚀 启动服务器</button>
-    <button class="sync-btn" id="btnConnect" onclick="showConnectDialog()">🔗 连接</button>
-    <button class="sync-btn" id="btnDisconnect" onclick="disconnect()" style="display:none">断开</button>
-  </div>
-</div>
-
 <div class="header">
   <div style="display: flex; justify-content: center; align-items: center;">
-    <h1>NICT 吊数计算器 V1.6</h1>
+    <h1>NICT 吊数计算器 V2.0</h1>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 深色</button>
+    <button class="theme-toggle" id="syncStatus" onclick="syncAPI && syncAPI.reconnect()" style="margin-left:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3);">🔴 未连接</button>
   </div>
 </div>
 
@@ -270,8 +248,15 @@ html.dark-mode { background-color: #0f172a !important; }
     <table class="stats-table">
       <thead>
         <tr>
-          <th>组别</th><th>船名</th><th>预完时间</th><th>离泊时间</th>
-          <th>岸桥号</th><th>吊数</th><th>作业时长</th><th>效率</th><th>备注</th>
+          <th>组别</th>
+          <th>船名</th>
+          <th>预完时间</th>
+          <th>离泊时间</th>
+          <th>岸桥号</th>
+          <th>吊数</th>
+          <th>作业时长</th>
+          <th>效率</th>
+          <th>备注</th>
         </tr>
       </thead>
       <tbody id="statsBody"></tbody>
@@ -279,219 +264,39 @@ html.dark-mode { background-color: #0f172a !important; }
   </div>
 </div>
 
-<!-- 连接对话框 -->
-<div id="connectDialog" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:9999;justify-content:center;align-items:center;">
-  <div style="background:#fff;border-radius:16px;padding:32px;max-width:400px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
-    <h3 style="color:#1565c0;margin-bottom:16px;text-align:center;">🔗 连接到同步服务器</h3>
-    <div style="margin-bottom:16px;">
-      <label style="display:block;color:#1565c0;font-weight:700;margin-bottom:6px;">服务器地址</label>
-      <input type="text" id="serverAddrInput" placeholder="例如：192.168.1.100:8765" style="width:100%;padding:10px;border:2px solid #90caf9;border-radius:8px;font-size:1em;color:#1565c0;font-weight:600;box-sizing:border-box;">
-    </div>
-    <div style="display:flex;gap:12px;justify-content:center;">
-      <button onclick="doConnect()" style="padding:10px 24px;background:#1565c0;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;">连接</button>
-      <button onclick="hideConnectDialog()" style="padding:10px 24px;background:#ccc;color:#333;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;">取消</button>
-    </div>
-  </div>
-</div>
-
+<script src="src/sync-engine.js"></script>
 <script>
 // ================================================================
-// Electron 同步系统
-// ================================================================
-let ws = null;
-let isServerRunning = false;
-let reconnectTimer = null;
-let myClientId = 'client_' + Math.random().toString(36).substr(2, 8);
-let serverMode = false;
-let currentServerAddr = '';
-
-// 检查是否在 Electron 环境中
-const isElectron = typeof window.electronAPI !== 'undefined';
-
-// 更新连接状态
-function updateSyncStatus(status, msg, onlineNum) {
-  const dot = document.getElementById('statusDot');
-  const text = document.getElementById('statusText');
-  const onlineEl = document.getElementById('onlineCount');
-  const btnServer = document.getElementById('btnStartServer');
-  const btnConnect = document.getElementById('btnConnect');
-  const btnDisconnect = document.getElementById('btnDisconnect');
-
-  dot.className = 'status-dot';
-  if (status === 'connected' || status === 'server') {
-    dot.classList.add('connected');
-    btnServer.style.display = 'none';
-    btnConnect.style.display = 'none';
-    btnDisconnect.style.display = 'inline-block';
-    onlineEl.style.display = 'inline-block';
-    if (onlineNum !== undefined) {
-      onlineEl.textContent = '在线：' + onlineNum;
-    }
-  } else {
-    btnServer.style.display = 'inline-block';
-    btnConnect.style.display = 'inline-block';
-    btnDisconnect.style.display = 'none';
-    onlineEl.style.display = 'none';
-  }
-  if (text) text.textContent = msg;
-}
-
-function showConnectDialog() {
-  document.getElementById('connectDialog').style.display = 'flex';
-  document.getElementById('serverAddrInput').focus();
-}
-
-function hideConnectDialog() {
-  document.getElementById('connectDialog').style.display = 'none';
-}
-
-async function startServer() {
-  const port = 8765;
-
-  if (isElectron) {
-    // Electron 模式：调用主进程启动 WebSocket 服务器
-    window.electronAPI.startServer(port);
-  }
-
-  // 获取本机 IP
-  let lanIp = '127.0.0.1';
-  if (isElectron) {
-    lanIp = await window.electronAPI.getLocalIP();
-  }
-
-  isServerRunning = true;
-  serverMode = true;
-  updateSyncStatus('server', `服务器模式（端口 ${port}）`, 1);
-
-  alert(`服务器已启动！\n\n其他电脑连接地址：\n${lanIp}:${port}\n\n（请确保防火墙允许 ${port} 端口）`);
-}
-
-function doConnect() {
-  const addr = document.getElementById('serverAddrInput').value.trim();
-  if (!addr) { alert('请输入服务器地址'); return; }
-
-  let fullAddr = addr;
-  if (!addr.includes(':')) fullAddr = addr + ':8765';
-
-  hideConnectDialog();
-  updateSyncStatus('connecting', '连接中...');
-  currentServerAddr = fullAddr;
-  connectToServer('ws://' + fullAddr);
-}
-
-function connectToServer(url) {
-  try {
-    ws = new WebSocket(url);
-
-    ws.onopen = () => {
-      updateSyncStatus('connected', '已连接', 2);
-      sendSync({ type: 'request_full_sync' });
-    };
-
-    ws.onmessage = (event) => {
-      try {
-        const msg = JSON.parse(event.data);
-        handleSyncMessage(msg);
-      } catch(e) {}
-    };
-
-    ws.onclose = () => {
-      updateSyncStatus('offline', '连接已断开');
-      ws = null;
-      if (reconnectTimer) clearTimeout(reconnectTimer);
-      reconnectTimer = setTimeout(() => {
-        if (currentServerAddr) connectToServer('ws://' + currentServerAddr);
-      }, 3000);
-    };
-
-    ws.onerror = () => {
-      updateSyncStatus('offline', '连接失败');
-    };
-  } catch(e) {
-    updateSyncStatus('offline', '连接失败：' + e.message);
-  }
-}
-
-function disconnect() {
-  if (ws) { ws.close(); ws = null; }
-  if (reconnectTimer) { clearTimeout(reconnectTimer); reconnectTimer = null; }
-  isServerRunning = false;
-  serverMode = false;
-  currentServerAddr = '';
-  updateSyncStatus('offline', '单机模式');
-}
-
-function sendSync(data) {
-  if (isElectron && serverMode && isServerRunning) {
-    // 作为服务器时，通过主进程广播
-    window.electronAPI.broadcastData(getLocalData());
-  } else if (ws && ws.readyState === WebSocket.OPEN) {
-    ws.send(JSON.stringify({ ...data, from: myClientId }));
-  }
-}
-
-function handleSyncMessage(msg) {
-  if (msg.type === 'full_sync') {
-    if (msg.data) applyRemoteData(msg.data);
-    if (msg.clients) updateSyncStatus('connected', '已连接', msg.clients);
-  } else if (msg.type === 'data_update') {
-    if (msg.data) applyRemoteData(msg.data, true);
-    if (msg.clients) updateSyncStatus('connected', '已连接', msg.clients);
-  } else if (msg.type === 'request_full_sync') {
-    if (isServerRunning) {
-      // Electron 服务器模式通过 IPC 广播
-      window.electronAPI.broadcastData(getLocalData());
-    }
-  } else if (msg.type === 'client_count') {
-    if (msg.count) updateSyncStatus('connected', '已连接', msg.count);
-  }
-}
-
-function getLocalData() {
-  return { groupData, currentGroup, version: '1.6' };
-}
-
-function applyRemoteData(data, incremental) {
-  if (!data) return;
-  if (data.groupData) {
-    for (let gi = 0; gi < MAX_GROUPS; gi++) {
-      if (data.groupData[gi]) {
-        groupData[gi] = data.groupData[gi];
-      }
-    }
-  }
-  if (data.currentGroup !== undefined) {
-    currentGroup = data.currentGroup;
-  }
-  renderGroupTabs();
-  document.getElementById('groupLabel').textContent = GROUP_NAMES[currentGroup];
-  renderAllPages();
-  updatePageLabel();
-  if (currentView === 'stats') renderStatsTable();
-}
-
-// 监听 Electron 主进程消息
-if (isElectron) {
-  window.electronAPI.onClientCount((count) => {
-    if (isServerRunning) {
-      updateSyncStatus('server', `服务器模式（端口 8765）`, count);
-    }
-  });
-}
-
-// ================================================================
-// 数据结构
+// 数据结构（与 sync-engine 共享）
 // ================================================================
 const GROUP_NAMES = ['一组','二组','三组','四组','五组','六组','七组','八组','九组'];
 const MAX_GROUPS = 9;
 
-let groupData = [];
+let groupData = []; // 由 sync-engine 初始化
 let currentGroup = 0;
 let currentView = 'calc';
 
 for (let gi = 0; gi < MAX_GROUPS; gi++) {
   groupData[gi] = { pages: [], pageCount: 0 };
 }
+
+// ================================================================
+// 监听同步更新事件
+// ================================================================
+window.addEventListener('sync-data-updated', (e) => {
+  const { groupData: newData, version } = e.detail;
+  // 更新本地数据并重新渲染
+  for (let gi = 0; gi < MAX_GROUPS; gi++) {
+    if (window.groupData[gi]) {
+      groupData[gi] = window.groupData[gi];
+    }
+  }
+  // 重新渲染当前页面
+  renderGroupTabs();
+  renderAllPages();
+  updatePageLabel();
+  console.log('[UI] Received sync update, version:', version);
+});
 
 // ================================================================
 // 视图切换
@@ -531,7 +336,6 @@ function switchGroup(gi) {
   document.getElementById('groupLabel').textContent = GROUP_NAMES[gi];
   renderAllPages();
   updatePageLabel();
-  broadcastUpdate();
 }
 
 // ================================================================
@@ -567,13 +371,12 @@ function savePageData(gi, pi) {
   d.naturalBay = document.getElementById(`naturalBay_${gi}_${pi}`).value;
   d.longCraneBay = document.getElementById(`longCraneBay_${gi}_${pi}`).value;
   d.remark = document.getElementById(`remarkInput_${gi}_${pi}`).value;
-  sessionStorage.setItem(`nictCalc_g${gi}_p${pi}`, JSON.stringify(d));
+  // 同步到服务器
+  if (window.syncAPI) {
+    window.syncAPI.markChanged();
+    window.syncAPI.saveGroup(gi);
+  }
   if (currentView === 'stats') renderStatsTable();
-  broadcastUpdate();
-}
-
-function broadcastUpdate() {
-  sendSync({ type: 'data_update', data: getLocalData() });
 }
 
 function calcWorkHours(gi, pi) {
@@ -801,18 +604,18 @@ function renderAllPages(){
 
 function updatePageLabel(){const count=groupData[currentGroup].pageCount;document.getElementById('pageLabel').textContent=`共 ${count} 页`;document.getElementById('btnRemovePage').disabled=count<=1;}
 
-document.getElementById('btnAddPage').addEventListener('click',()=>{const gd=groupData[currentGroup];createPage(currentGroup,gd.pageCount,gd.pageCount>0?0:null);gd.pageCount++;updatePageLabel();broadcastUpdate();});
+document.getElementById('btnAddPage').addEventListener('click',()=>{const gd=groupData[currentGroup];createPage(currentGroup,gd.pageCount,gd.pageCount>0?0:null);gd.pageCount++;updatePageLabel();});
 
 document.getElementById('btnRemovePage').addEventListener('click',()=>{
   const gd=groupData[currentGroup];if(gd.pageCount<=1)return;
   const lastPi=gd.pageCount-1,wrapper=document.getElementById(`calc-page-${currentGroup}-${lastPi}`);if(wrapper)wrapper.remove();
   delete gd.pages[lastPi];sessionStorage.removeItem(`nictCalc_g${currentGroup}_p${lastPi}`);
   const key=`clockInterval_g${currentGroup}_p${lastPi}`;if(window[key]){clearInterval(window[key]);delete window[key];}
-  gd.pageCount--;updatePageLabel();if(currentView==='stats')renderStatsTable();broadcastUpdate();
+  gd.pageCount--;updatePageLabel();if(currentView==='stats')renderStatsTable();
 });
 
 // ================================================================
-// 统计视图
+// 统计视图：每列独立纵向合并大框
 // ================================================================
 function renderStatsTable(){
   const now=new Date();const tbody=document.getElementById('statsBody');const summaryEl=document.getElementById('statsSummary');
@@ -827,23 +630,49 @@ function renderStatsTable(){
 
   if(allShips.length===0){tbody.innerHTML=`<tr><td colspan="9" style="text-align:center;padding:50px;color:#90caf9;font-size:1.1em;">暂无预完时间内的船舶记录</td></tr>`;return;}
 
+  // 全局最大效率
   let globalMaxEff=-1;
   for(const ship of allShips){const wh=getWorkHoursFromEst(ship.d.estCompletionTime);for(const q of(ship.d.qcData||[])){const eff=wh>0?(parseFloat(q?.qc)||0)/wh:0;if(eff>globalMaxEff)globalMaxEff=eff;}}
 
+  // 渲染
   for(const ship of allShips){
-    const {gi,d}=ship;const wh=getWorkHoursFromEst(d.estCompletionTime);const bridges=d.qcData||[];const bc=bridges.length;
+    const {gi,d}=ship;
+    const wh=getWorkHoursFromEst(d.estCompletionTime);
+    const bridges=d.qcData||[];
+    const bc=bridges.length;
 
     for(let b=0;b<Math.max(bc,1);b++){
-      const q=bridges[b];const bridgeNum=q?q.bridge:`QC${(b+1).toString().padStart(2,'0')}`;const qcVal=q?(parseFloat(q.qc)||0):0;const eff=wh>0?qcVal/wh:0;const isMax=eff>0&&eff===globalMaxEff;
+      const q=bridges[b];
+      const bridgeNum=q?q.bridge:`QC${(b+1).toString().padStart(2,'0')}`;
+      const qcVal=q?(parseFloat(q.qc)||0):0;
+      const eff=wh>0?qcVal/wh:0;
+      const isMax=eff>0&&eff===globalMaxEff;
+
       const tr=document.createElement('tr');tr.className='bridge-row';
 
+      // 组别：只在第一行 rowspan
       let groupCell='';if(b===0)groupCell=`<td rowspan="${Math.max(bc,1)}" style="background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff;font-weight:800;font-size:1em;text-align:center;vertical-align:middle;letter-spacing:2px;border-right:2px solid #0d47a1;">${GROUP_NAMES[gi]}</td>`;
+
+      // 船名
       let shipCell='';if(b===0)shipCell=`<td rowspan="${Math.max(bc,1)}" class="cell-group" style="border-right:2px solid #bbdefb;"><span class="cell-val">${d.shipName||'（未填船名）'}</span></td>`;
+
+      // 预完时间
       let estCell='';if(b===0)estCell=`<td rowspan="${Math.max(bc,1)}" class="cell-group-alt" style="border-right:2px solid #c8e6c9;"><span class="cell-val" style="color:#2e7d32;">${fmtFullTime(d.estCompletionTime)}</span><span class="cell-sub">预完</span></td>`;
+
+      // 离泊时间
       let depCell='';if(b===0)depCell=`<td rowspan="${Math.max(bc,1)}" class="cell-group-alt" style="border-right:2px solid #c8e6c9;"><span class="cell-val" style="color:#2e7d32;">${fmtFullTime(d.departureTime)}</span><span class="cell-sub">离泊</span></td>`;
+
+      // 备注
       let remCell='';if(b===0)remCell=`<td rowspan="${Math.max(bc,1)}" class="cell-remark" style="border-right:2px solid #ffcdd2;"><span class="remark-text">${d.remark||'-'}</span></td>`;
 
-      tr.innerHTML=`${groupCell}${shipCell}${estCell}${depCell}<td><span class="bridge-num">${bridgeNum}</span></td><td><span class="bridge-qty">${qcVal||'-'}</span></td><td><span class="bridge-hours">${wh.toFixed(1)}h</span></td><td><span class="bridge-eff${isMax?' max':''}">${wh>0?eff.toFixed(1):'-'}</span></td>${remCell}`;
+      tr.innerHTML=`
+        ${groupCell}${shipCell}${estCell}${depCell}
+        <td><span class="bridge-num">${bridgeNum}</span></td>
+        <td><span class="bridge-qty">${qcVal||'-'}</span></td>
+        <td><span class="bridge-hours">${wh.toFixed(1)}h</span></td>
+        <td><span class="bridge-eff${isMax?' max':''}">${wh>0?eff.toFixed(1):'-'}</span></td>
+        ${remCell}
+      `;
       tbody.appendChild(tr);
     }
   }
@@ -875,16 +704,10 @@ function exportStatsToExcel(){
 }
 
 // ================================================================
-// 恢复
-// ================================================================
-function restoreFromSession(){
-  for(let gi=0;gi<MAX_GROUPS;gi++){let maxPi=-1;for(let pi=0;pi<20;pi++){const stored=sessionStorage.getItem(`nictCalc_g${gi}_p${pi}`);if(stored){if(!groupData[gi].pages[pi])groupData[gi].pages[pi]=JSON.parse(stored);maxPi=Math.max(maxPi,pi);}}groupData[gi].pageCount=maxPi+1;}
-}
-
-// ================================================================
 // 初始化
 // ================================================================
-function init(){loadTheme();restoreFromSession();renderGroupTabs();document.getElementById('groupLabel').textContent=GROUP_NAMES[currentGroup];renderAllPages();updatePageLabel();initFillHandle();}
+function init(){loadTheme();renderGroupTabs();document.getElementById('groupLabel').textContent=GROUP_NAMES[currentGroup];updatePageLabel();initFillHandle();}
+// 注意：sessionStorage 恢复已由 sync-engine 在 loadFromServer 中替代
 init();
 </script>
 
