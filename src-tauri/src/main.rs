@@ -39,17 +39,28 @@ type SharedState = Arc<AppState>;
 // Tauri 命令：启动同步服务器
 #[tauri::command]
 async fn start_server(state: tauri::State<'_, SharedState>, port: u16) -> Result<String, String> {
-    let mut running = state.server_running.lock().unwrap();
-    if *running {
-        let port = *state.server_port.lock().unwrap();
-        return Ok(format!("服务器已在运行，端口：{}", port));
+    // Check if already running (lock scope minimized to avoid跨await)
+    {
+        let running = state.server_running.lock().unwrap();
+        if *running {
+            let port = *state.server_port.lock().unwrap();
+            return Ok(format!("服务器已在运行，端口：{}", port));
+        }
     }
 
+    // Bind before acquiring the running lock
     let addr = format!("0.0.0.0:{}", port);
     let listener = TcpListener::bind(&addr).await.map_err(|e| format!("启动失败：{}", e))?;
 
-    *running = true;
-    *state.server_port.lock().unwrap() = port;
+    // Now set running=true
+    {
+        let mut running = state.server_running.lock().unwrap();
+        *running = true;
+    }
+    {
+        let mut p = state.server_port.lock().unwrap();
+        *p = port;
+    }
 
     let broadcast_tx = state.broadcast_tx.clone();
     let state_clone = state.inner().clone();
