@@ -1,6 +1,6 @@
 {
   "build": {
-    "distDir": ".",
+    "distDir": "dist",
     "devPath": "http://localhost:1420",
     "beforeDevCommand": "",
     "beforeBuildCommand": "npm run build"
