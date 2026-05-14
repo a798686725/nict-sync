@@ -1,10 +1,11 @@
 {
   "name": "nict-calculator",
-  "version": "1.6",
-  "description": "NICT 吊数计算器 V1.6 - 局域网同步版",
+  "version": "2.0.0",
+  "description": "NICT 吊数计算器 V2.0 - 局域网同步版",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "dev": "electron . --dev",
     "build": "electron-builder --win portable",
     "build-dir": "electron-builder --win --dir"
   },
@@ -15,23 +16,22 @@
       "target": [
         {
           "target": "portable",
-          "arch": [
-            "x64"
-          ]
+          "arch": ["x64"]
         }
       ]
     },
     "portable": {
-      "artifactName": "NICT吊数计算器_同步版_${version}.exe"
+      "artifactName": "NICT吊数计算器_v${version}_便携版.exe"
     },
     "files": [
       "main.js",
       "preload.js",
-      "index.html"
+      "index.html",
+      "src/**"
     ]
   },
   "dependencies": {
-    "ws": "^8.16.0"
+    "electron-log": "^5.1.1"
   },
   "devDependencies": {
     "electron": "^28.0.0",
